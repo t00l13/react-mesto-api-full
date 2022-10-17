@@ -1,0 +1,17 @@
+.auth-page__input{
+    display: block;
+    color: #fff;
+    min-height: 27px;
+    margin-top: 30px;
+    margin-bottom: 2px;
+    padding: 5px 2px;
+    box-sizing: border-box;
+    border: 0;
+    border-radius: 2px;
+    border-bottom: 2px solid #cccccc;
+    background-color: transparent;
+    font-style: inherit;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.21;
+}

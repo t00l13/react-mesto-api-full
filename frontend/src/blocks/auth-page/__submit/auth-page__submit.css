@@ -1,0 +1,18 @@
+.auth-page__submit{
+    width: 100%;
+    border:0;
+    background-color:#fff;
+    height: 50px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    margin-top: auto;
+    box-sizing:border-box;
+    margin: 0 auto;
+    margin: 0 auto;
+    bottom: 0;
+    position:absolute;
+}

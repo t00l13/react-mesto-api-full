@@ -1,0 +1,26 @@
+.header__link{
+    color:#fff;
+    font-size: 18px;
+    line-height: 1.2;
+    font-weight: 400;
+    align-self: center;
+    text-decoration: none;
+    transition: opacity .3s ease-in;
+}
+
+.header__link:hover{
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+    .header__link {
+      padding-right: 28px;
+    }
+  }
+  
+  @media screen and (max-width:560px) {
+    .header__link {
+      font-size: 14px;
+    }
+  }

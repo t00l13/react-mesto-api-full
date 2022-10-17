@@ -1,0 +1,10 @@
+.profile__wrapper{
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 16px;
+}
+@media screen and (max-width:426px) {
+  .profile__wrapper{
+    margin-bottom: 14px;
+  }
+}
