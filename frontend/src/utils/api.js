@@ -19,7 +19,8 @@
         return fetch(this._userUrl, {
             headers: {
                 authorization: this._token,
-            }
+            },
+            credentials: 'include',
         })
         .then( this._handleResponse)
     }
@@ -31,6 +32,7 @@
                 authorization: this._token,
                 'Content-Type': 'application/json'
             },
+            credentials: 'include',
             body: JSON.stringify({
                 name: name,
                 about: about,
@@ -46,6 +48,7 @@
                 authorization: this._token,
                 'Content-Type' : 'application/json'
             },
+            credentials: 'include',
             body: JSON.stringify({
                 avatar: src,
             })
@@ -57,7 +60,8 @@
         return fetch(this._cardsUrl, {
             headers: {
                 authorization:this._token,
-            }
+            },
+            credentials: 'include',
         })
         .then(this._handleResponse)
     }
@@ -69,6 +73,7 @@
                 authorization: this._token,
                 'Content-Type' : 'application/json'
             },
+            credentials: 'include',
             body: JSON.stringify({
                 name: name,
                 link: link
@@ -82,7 +87,8 @@
             method:'DELETE',
             headers: {
                 authorization: this._token,
-            }
+            },
+            credentials: 'include',
         })
         .then(this._handleResponse)
     }
@@ -92,7 +98,8 @@
             method: isNotLiked ? 'PUT' : 'DELETE',
             headers: {
                 authorization:this._token,
-            }
+            },
+            credentials: 'include',
         })
         .then(this._handleResponse)
     }
