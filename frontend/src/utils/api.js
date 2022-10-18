@@ -99,10 +99,9 @@
  }
 
 const api = new Api({
-    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-45',
+    baseUrl: 'https://toolie-mesto.nomoreparties.icu',
     headers: {
-      authorization: 'fcd67938-a1e9-408c-8c74-faa990c9d125',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     }
   });
   
