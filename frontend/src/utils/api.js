@@ -39,7 +39,7 @@
         })
         .then(this._handleResponse)
     }
-    //--- МЕТОД СМЕНЫ АВАТАРА ПОЛЬЗОВАТЕЛЯ
+    //--- МЕТОД СМЕНЫ АВАТАРА ПОЛЬЗОВАТЕЛЯ-
     changeAvatar(src) {
         return fetch(`${this._userUrl}/avatar`, {
             method: 'PATCH',
