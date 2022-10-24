@@ -27,7 +27,7 @@ function Header({ email, onSignOut }) {
             </Link>
           </Route>
           <Route path="/signup">
-            <Link to="sign-in" className="header__link">
+            <Link to="signin" className="header__link">
               Войти
             </Link>
           </Route>
