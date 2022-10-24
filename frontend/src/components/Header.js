@@ -22,7 +22,7 @@ function Header({ email, onSignOut }) {
         />
         <Switch>
           <Route path="/signin">
-            <Link to="sign-up" className="header__link">
+            <Link to="singup" className="header__link">
               Регистрация
             </Link>
           </Route>
