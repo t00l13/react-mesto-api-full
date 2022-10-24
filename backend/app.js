@@ -38,8 +38,8 @@ app.listen(PORT, () => {
   console.log(`Server start on port: ${PORT}`);
 });
 
-app.post('/signin', validationLogin, login);
-app.post('/signup', validationUser, createUser);
+app.post('/sign-in', validationLogin, login);
+app.post('/sign-up', validationUser, createUser);
 
 app.use(auth);
 
