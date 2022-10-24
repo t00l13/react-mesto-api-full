@@ -21,12 +21,12 @@ function Header({ email, onSignOut }) {
           className={`header__logo logo ${isClicked ? "logo_small-menu" : ""}`}
         />
         <Switch>
-          <Route path="/sign-in">
+          <Route path="/signin">
             <Link to="sign-up" className="header__link">
               Регистрация
             </Link>
           </Route>
-          <Route path="/sign-up">
+          <Route path="/signup">
             <Link to="sign-in" className="header__link">
               Войти
             </Link>
