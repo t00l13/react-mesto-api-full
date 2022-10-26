@@ -220,7 +220,7 @@ function App() {
       .then((data) => {
         if (data) {
           handleInfoTooltip(true);
-          history.push("/singin");
+          history.push("/signin");
         }
       })
       .catch((err) => {
@@ -250,7 +250,7 @@ function App() {
     localStorage.removeItem("token");
     setLoggedIn(false);
     setEmail("");
-    history.push("/singin");
+    history.push("/signin");
   }
 
   function closeAllPopups() {
@@ -287,11 +287,11 @@ function App() {
               onDeleteCard={handleCardDeleteClick}
             />
 
-            <Route path="/singin">
+            <Route path="/signin">
               <Login onLogin={handleLogin} />
             </Route>
 
-            <Route path="/singup">
+            <Route path="/signup">
               <Register onRegister={handleRegister} />
             </Route>
 
