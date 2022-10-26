@@ -1,4 +1,4 @@
-const CORS_WHITELIST = ['http://localhost:3000',
+const CORS_WHITELIST = ['http://localhost:5000',
   'https://toolie-mesto.nomoredomains.icu',
   'http://toolie-mesto.nomoredomains.icu',
 ];
