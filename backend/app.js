@@ -17,7 +17,7 @@ const {
   validationUser,
 } = require('./middlewares/validation');
 
-const { PORT = 3001 } = process.env;
+const { PORT = 5000 } = process.env;
 
 const app = express();
 
