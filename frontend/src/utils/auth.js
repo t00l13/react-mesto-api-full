@@ -1,4 +1,4 @@
-export const BASE_URL = "http://api.toolie-mesto.nomoredomains.icu";
+export const BASE_URL = "https://api.toolie-mesto.nomoredomains.icu";
 
 export const register = (password, email) => {
   return fetch(`${BASE_URL}/signup`, {
