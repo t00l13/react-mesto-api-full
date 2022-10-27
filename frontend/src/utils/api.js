@@ -1,99 +1,85 @@
 //     КЛАСС ДЛЯ ОТПРАВКИ ЗАПРОСОВ НА СЕРВЕР
  class Api {
-    constructor({ baseUrl, headers}) {
-        this._baseUrl = baseUrl;
-        this._userUrl = `${this._baseUrl}/users/me`;
-        this._cardsUrl = `${this._baseUrl}/cards`;
-        this._token = headers['authorization'];
+    constructor(config) {
+        this._url = config.url;
+        this._headers = config.headers;
     }
 
-    _handleResponse (res) {
+    _checkResponse (res) {
         if(res.ok) {
             return res.json();
         }
         return Promise.reject(`Что-то не так, ошибка: ${res.status}`);
     }
+
+    _getHeaders() {
+        const jwt = localStorage.getItem("jwt");
+        return {
+            "Authorization" : `Bearer ${jwt}`,
+            ...this._headers
+        }
+    }
     //--- МЕТОД ПОЛУЧЕНИЯ ИНФОРМАЦИИ ПОЛЬЗОВАТЕЛЯ
     getUserData(){
-        return fetch(this._userUrl, {
-            headers: {
-                authorization: this._token,
-            },
-            credentials: 'include',
+        return fetch(`${this._url}users/me`, {
+            method: 'GET',
+            headers: this._getHeaders(),
         })
-        .then( this._handleResponse)
+            .then(this._checkResponse)
     }
     //--- МЕТОД СОХРАНЕНИЯ ИНФОРМАЦИИ ИНФОРМАЦИИ ПОЛЬЗОВАТЕЛЯ
-    saveUserChanges({ name, about }) {
-        return fetch(this._userUrl, {
+    saveUserChanges(data) {
+        return fetch(`${this._url}users/me`, {
             method: 'PATCH',
-            headers: {
-                authorization: this._token,
-                'Content-Type': 'application/json'
-            },
-            credentials: 'include',
+            headers: this._getHeaders(),
             body: JSON.stringify({
-                name: name,
-                about: about,
+                name: data.name,
+                about: data.info
             })
         })
-        .then(this._handleResponse)
+            .then(this._checkResponse)
     }
     //--- МЕТОД СМЕНЫ АВАТАРА ПОЛЬЗОВАТЕЛЯ-
-    changeAvatar(src) {
-        return fetch(`${this._userUrl}/avatar`, {
+    changeAvatar(data) {
+        return fetch(`${this._url}users/me/avatar`, {
             method: 'PATCH',
-            headers: {
-                authorization: this._token,
-                'Content-Type' : 'application/json'
-            },
-            credentials: 'include',
+            headers: this._getHeaders(),
             body: JSON.stringify({
-                avatar: src,
+                avatar: data.avatar
             })
         })
-        .then(this._handleResponse)
+            .then(this._checkResponse)
     }
     //--- МЕТОД ПОЛУЧЕНИЯ КАРТОЧЕК С СЕРВЕРА
     getInitialCards() {
-        return fetch(this._cardsUrl, {
-            headers: {
-                authorization:this._token,
-            },
-            credentials: 'include',
+        return fetch(`${this._url}cards/`, {
+            method: 'GET',
+            headers: this._getHeaders()
         })
-        .then(this._handleResponse)
+            .then(this._checkResponse)
     }
     //--- МЕТОД ПУБЛИКАЦИИ НОВОЙ КАРТОЧКИ 
-    postNewCard({ name, link }) {
-        return fetch(this._cardsUrl, {
+    postNewCard(data) {
+        return fetch(`${this._url}cards/`, {
             method: 'POST',
-            headers: {
-                authorization: this._token,
-                'Content-Type' : 'application/json'
-            },
-            credentials: 'include',
+            headers: this._getHeaders(),
             body: JSON.stringify({
-                name: name,
-                link: link
-            }) 
+                name: data.name,
+                link: data.link
+            })
         })
-        .then(this._handleResponse)
+            .then(this._checkResponse)
     }
     //--- МЕТОД УДАЛЕНИЕ КАРТОЧКИ
-    deleteCard(cardId){
-        return fetch(`${this._cardsUrl}/${cardId}`, {
-            method:'DELETE',
-            headers: {
-                authorization: this._token,
-            },
-            credentials: 'include',
-        })
-        .then(this._handleResponse)
+    deleteCard(id){
+        return fetch(`${this._url}cards/${id}`, {
+            method: "DELETE",
+            headers: this._getHeaders(),
+        }).then(this._checkResponse)
     }
     //--- МЕТОД ЛАЙКА КАРТОЧКИ
-    changeLikeCardStatus(cardId, isNotLiked) {
-        return fetch(`${this._likesUrl}/${cardId}`, {
+    changeLikeCardStatus(id, isNotLiked) {
+        return fetch(`${this._url}cards/${id}`, {
             method: isNotLiked ? 'PUT' : 'DELETE',
             headers: {
                 authorization:this._token,
