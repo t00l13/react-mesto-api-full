@@ -1,4 +1,5 @@
 const allowedCors = [
+  'https://localhost:7777',
   'https://localhost:5000',
   'https://toolie-mesto.nomoredomains.icu',
   'http://toolie-mesto.nomoredomains.icu',
