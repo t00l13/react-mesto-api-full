@@ -105,7 +105,7 @@
  }
 
 const api = new Api({
-    baseUrl: 'https://toolie-mesto.nomoredomains.icu/api',
+    baseUrl: 'http://toolie-mesto.nomoredomains.icu/api',
     headers: {
       'Content-Type': 'application/json',
     }
