@@ -52,7 +52,7 @@
     }
     //--- МЕТОД ПОЛУЧЕНИЯ КАРТОЧЕК С СЕРВЕРА
     getInitialCards() {
-        return fetch(`${this._url}cards/`, {
+        return fetch(`${this._url}cards`, {
             method: 'GET',
             headers: this._getHeaders()
         })
@@ -60,7 +60,7 @@
     }
     //--- МЕТОД ПУБЛИКАЦИИ НОВОЙ КАРТОЧКИ 
     postNewCard(data) {
-        return fetch(`${this._url}cards/`, {
+        return fetch(`${this._url}cards`, {
             method: 'POST',
             headers: this._getHeaders(),
             body: JSON.stringify({
