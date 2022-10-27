@@ -1,59 +1,45 @@
 export const BASE_URL = "https://api.toolie-mesto.nomoredomains.icu";
 
-export const register = (password, email) => {
-  return fetch(`${BASE_URL}/signup`, {
-    method: "POST",
-    credentials: 'include',
+function handleResponse(res) {
+  if (res.ok) {
+      return res.json()
+  }
+  return Promise.reject(res.status)
+}
+
+export const register = (email, password) => {
+  return fetch(`${BASE_URL}/signup`,{
+    method: 'POST',
     headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
+        'Accept': 'application/json',
+        "Content-Type": "application/json"
     },
-    body: JSON.stringify({
-      password,
-      email,
-    }),
-  }).then((res) => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Ошибка: ${res.status}`);
-  });
+    body: JSON.stringify({email, password})
+})
+    .then(handleResponse)
 };
 
-export const login = (password, email) => {
+export const login = (email, password) => {
   return fetch(`${BASE_URL}/signin`, {
-    method: "POST",
-    credentials: 'include',
+    method: 'POST',
     headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
+        'Accept': 'application/json',
+        "Content-Type": "application/json"
     },
-    body: JSON.stringify({
-      password,
-      email,
-    }),
-  }).then((res) => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Ошибка: ${res.status}`);
-  });
+    body: JSON.stringify({email, password})
+})
+    .then(handleResponse)
 };
 
-export const checkToken = (token) => {
+export const checkToken = (jwt) => {
   return fetch(`${BASE_URL}/users/me`, {
-    method: "GET",
-    credentials: 'include',
+    method: 'GET',
     headers: {
-      Accept: "application/json",
-      "Content-Type": "application",
-      Authorization: `Bearer ${token}`,
-    },
-  }).then((res) => {
-    if (res.ok) {
-      return res.json();
+        'Accept': 'application/json',
+        "Content-Type": "application/json",
+        "Authorization" : `Bearer ${jwt}`
     }
-    return Promise.reject(`Ошибка: ${res.status}`);
-  });
+})
+    .then(handleResponse)
 };
 
