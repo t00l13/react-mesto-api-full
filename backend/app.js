@@ -29,6 +29,7 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 });
 
 console.log(cors);
+
 app.use(cors);
 
 app.use(bodyParser.json());
@@ -37,20 +38,20 @@ app.use(cookieParser());
 
 app.use(requestLogger);
 
-app.listen(PORT, () => {
-  console.log(`Server start on port: ${PORT}`);
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
 });
 
 app.post('/signin', validationLogin, login);
 app.post('/signup', validationUser, createUser);
-
 app.use(auth);
-
 app.use('/users', require('./routes/users'));
 app.use('/cards', require('./routes/cards'));
 
-app.use('*', (req, res, next) => {
-  next(new NotFoundError('Запрашиваемый ресурс не найден!'));
+app.use('*', () => {
+  throw new NotFoundError('Запрашиваемый ресурс не найден');
 });
 
 app.use(errorLogger);
@@ -58,3 +59,7 @@ app.use(errorLogger);
 app.use(errors());
 
 app.use(errorHandler);
+
+app.listen(PORT, () => {
+  console.log(`Application is running on port ${PORT}`);
+});
