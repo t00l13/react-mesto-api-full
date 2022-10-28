@@ -7,7 +7,7 @@ function handleResponse(res) {
   return Promise.reject(res.status)
 }
 
-export const register = (email, password) => {
+export const register = (password, email) => {
   return fetch(`${BASE_URL}/signup`,{
     method: 'POST',
     headers: {
