@@ -14,19 +14,19 @@ export const register = (password, email) => {
         'Accept': 'application/json',
         "Content-Type": "application/json"
     },
-    body: JSON.stringify({email, password})
+    body: JSON.stringify({password, email})
 })
     .then(handleResponse)
 };
 
-export const login = (email, password) => {
+export const login = (password, email) => {
   return fetch(`${BASE_URL}/signin`, {
     method: 'POST',
     headers: {
         'Accept': 'application/json',
         "Content-Type": "application/json"
     },
-    body: JSON.stringify({email, password})
+    body: JSON.stringify({password, email})
 })
     .then(handleResponse)
 };
