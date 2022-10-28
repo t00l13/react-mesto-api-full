@@ -17,7 +17,7 @@ const {
   validationUser,
 } = require('./middlewares/validation');
 
-const { PORT = 5555 } = process.env;
+const { PORT = 5000 } = process.env;
 
 const app = express();
 mongoose.connect('mongodb://localhost:27017/mestodb', {
