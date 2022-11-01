@@ -1,6 +1,8 @@
 const allowedCors = [
   'https://toolie-mesto.nomoredomains.icu',
   'http://toolie-mesto.nomoredomains.icu',
+  'http://localhost:7777',
+  'http://localhost:5555',
 ];
 
 const cors = (req, res, next) => {
