@@ -6,7 +6,7 @@ const { errors } = require('celebrate');
 const errorHandler = require('./middlewares/error-handler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const cors = require('./middlewares/cors');
-require('dotenv').config();
+// require('dotenv').config();
 
 const NotFoundError = require('./errors/NotFoundError');
 
@@ -25,8 +25,6 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 }, (err) => {
   if (err) { console.log(err); }
 });
-
-console.log(cors);
 
 app.use(cors);
 
