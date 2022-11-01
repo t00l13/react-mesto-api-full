@@ -5,8 +5,8 @@ const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
 const errorHandler = require('./middlewares/error-handler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-// const cors = require('./middlewares/cors');
-// require('dotenv').config();
+const cors = require('./middlewares/cors');
+require('dotenv').config();
 
 const NotFoundError = require('./errors/NotFoundError');
 
@@ -26,7 +26,7 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   if (err) { console.log(err); }
 });
 
-// app.use(cors);
+app.use(cors);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
