@@ -32,7 +32,7 @@ const createCard = (req, res, next) => {
   const { name, link } = req.body;
   Card
     .create({ name, link, owner: req.user._id })
-    .then((card) => { res.send({ data: card }); })
+    .then((card) => { res.send(card); })
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new BadRequestError(`${Object.values(err.errors).map((error) => error.message).join(', ')}`));
@@ -51,7 +51,7 @@ const likeCard = (req, res, next) => {
       if (!card) {
         throw new NotFoundError('Карточка не найдена');
       }
-      return res.send({ data: card });
+      return res.send(card);
     })
     .catch((err) => {
       if (err.name === 'CastError') {
@@ -71,7 +71,7 @@ const dislikeCard = (req, res, next) => {
       if (!card) {
         throw new NotFoundError('Ошибка 404: Карточка не найдена');
       }
-      return res.status(200).send({ data: card });
+      return res.status(200).send(card);
     })
     .catch((err) => {
       if (err.name === 'CastError') {

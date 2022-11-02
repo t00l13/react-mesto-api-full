@@ -78,13 +78,27 @@
         }).then(this._checkResponse)
     }
     //--- МЕТОД ЛАЙКА КАРТОЧКИ
-    changeLikeCardStatus(id, isNotLiked) {
-        return fetch(`${this._url}cards/${id}`, {
-            method: isNotLiked ? 'PUT' : 'DELETE',
+    addLike(id) {
+        return fetch(`${this._url}cards/${id}/likes`, {
+            method: "PUT",
             headers: this._getHeaders(),
-            credentials: 'include',
-        })
-        .then(this._handleResponse)
+        }).then(this._checkResponse)
+    }
+
+    //Убрать лайк
+    disLike(id) {
+        return fetch(`${this._url}cards/${id}/likes`, {
+            method: "DELETE",
+            headers: this._getHeaders(),
+        }).then(this._checkResponse)
+    }
+
+    changeLikeCardStatus(id, isLiked) {
+        if (isLiked) {
+            return this.disLike(id);
+        } else {
+            return this.addLike(id);
+        }
     }
  }
 

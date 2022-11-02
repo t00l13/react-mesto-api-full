@@ -39,10 +39,10 @@ function Main(props) {
 
       <section className="gallery">
         <ul className="gallery__list">
-          {props.cards.map((item) => (
+          {props.cards.map((card) => (
             <Card
-              key={item["_id"]}
-              card={item}
+              key={card._id}
+              card={card}
               onCardClick={props.onCardClick}
               onCardDelete={props.onDeleteCard}
               onCardLike={props.onLikeCard}
