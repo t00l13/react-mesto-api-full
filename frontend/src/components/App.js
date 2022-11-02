@@ -45,17 +45,17 @@ function App() {
 
   //Выводим информацию профиля
   React.useEffect(() => {
-    if (loggedIn) {
-      api
-        .getUserData()
-        .then((data) => {
-          setCurrentUser(data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, [loggedIn]);
+    api.getUserData()
+      .then(data => {
+        handleLoggedIn();
+        setEmail(data.email);
+        setCurrentUser(data);
+        history.push('/');
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }, [history, loggedIn]);
 
   //Выводим карточки
   React.useEffect(() => {
@@ -163,10 +163,10 @@ function App() {
       });
   }
 
-  function handleUpdateUser(newUserData) {
+  function handleUpdateUser(data) {
     setRenderSave(true);
     api
-      .saveUserChanges(newUserData)
+      .saveUserChanges(data)
       .then((data) => {
         setCurrentUser(data);
         closeAllPopups();
@@ -179,10 +179,10 @@ function App() {
       });
   }
 
-  function handleUpdateAvatar(newAvatarLink) {
+  function handleUpdateAvatar(data) {
     setRenderSave(true);
     api
-      .changeAvatar(newAvatarLink)
+      .changeAvatar(data)
       .then((data) => {
         setCurrentUser({
           ...currentUser,
