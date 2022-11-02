@@ -233,10 +233,10 @@ function App() {
     auth
       .login(password, email)
       .then((data) => {
-        if (data.jwt) {
+        if (data.token) {
           setEmail(email);
           handleLoggedIn();
-          localStorage.setItem("jwt", data.jwt);
+          localStorage.setItem("jwt", data.token);
           history.push("/");
         }
       })
