@@ -184,10 +184,7 @@ function App() {
     api
       .changeAvatar(data)
       .then((data) => {
-        setCurrentUser({
-          ...currentUser,
-          avatar: data.avatar,
-        });
+        setCurrentUser(data);
         closeAllPopups();
       })
       .catch((err) => {

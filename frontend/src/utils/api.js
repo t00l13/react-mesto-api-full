@@ -45,7 +45,7 @@
             method: 'PATCH',
             headers: this._getHeaders(),
             body: JSON.stringify({
-                avatar: data.avatar
+                avatar: data
             })
         })
             .then(this._checkResponse)
