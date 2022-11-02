@@ -78,7 +78,7 @@ function App() {
         .checkToken(jwt)
         .then((data) => {
           if (data) {
-            setEmail(data.message.email);
+            setEmail(data.email);
             handleLoggedIn();
             history.push("/");
           }
@@ -268,7 +268,7 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <div className="container">
-          <Header email={email} onSignOut={handleSignOut} />
+          <Header email={currentUser.email} onSignOut={handleSignOut} />
           <Switch>
             <ProtectedRoute
               exact
