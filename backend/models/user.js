@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const validator = require('validator');
-const { validationLink } = require('../middlewares/validation');
+const { validationUrl } = require('../middlewares/validation');
 const UnauthorizedError = require('../errors/UnauthorizedError');
 
 const userSchema = new mongoose.Schema({
@@ -24,8 +24,8 @@ const userSchema = new mongoose.Schema({
     required: false,
     default: 'https://pictures.s3.yandex.net/resources/jacques-cousteau_1604399756.png',
     validate: {
-      validator: validationLink,
-      message: (props) => `${props.value} is not a valid link!`,
+      validator: validationUrl,
+      message: 'Ссылка не валидна',
     },
   },
   email: {

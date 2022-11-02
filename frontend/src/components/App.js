@@ -179,6 +179,7 @@ function App() {
   }
 
   function handleUpdateAvatar(data) {
+    console.log(data);
     setRenderSave(true);
     api
       .changeAvatar(data)
