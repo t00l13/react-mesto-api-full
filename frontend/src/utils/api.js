@@ -81,9 +81,7 @@
     changeLikeCardStatus(id, isNotLiked) {
         return fetch(`${this._url}cards/${id}`, {
             method: isNotLiked ? 'PUT' : 'DELETE',
-            headers: {
-                authorization:this._token,
-            },
+            headers: this._getHeaders(),
             credentials: 'include',
         })
         .then(this._handleResponse)
