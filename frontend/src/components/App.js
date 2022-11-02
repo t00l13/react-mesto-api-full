@@ -48,8 +48,8 @@ function App() {
     api.getUserData()
       .then(data => {
         handleLoggedIn();
-        setEmail(data.email);
-        setCurrentUser(data);
+        setEmail(email);
+        setCurrentUser(data.message);
         history.push('/');
       })
       .catch(err => {
@@ -78,7 +78,7 @@ function App() {
         .checkToken(jwt)
         .then((data) => {
           if (data) {
-            setEmail(data.email);
+            setEmail(data.message.email);
             handleLoggedIn();
             history.push("/");
           }
@@ -136,10 +136,7 @@ function App() {
     api
       .deleteCard(card._id)
       .then(() => {
-        const newCards = cards.filter((c) =>
-          c._id === card._id ? false : true
-        );
-        setCards(newCards);
+        setCards((state) => state.filter((c) => c._id !== card._id));
         closeAllPopups();
       })
       .catch((err) => {

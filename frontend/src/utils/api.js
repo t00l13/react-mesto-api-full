@@ -34,7 +34,7 @@
             headers: this._getHeaders(),
             body: JSON.stringify({
                 name: data.name,
-                about: data.info
+                about: data.about,
             })
         })
             .then(this._checkResponse)
