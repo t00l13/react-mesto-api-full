@@ -151,9 +151,11 @@ function App() {
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const even = (like) => like === currentUser._id;
+    const isLiked = card.likes.some(even);
+
     api
-      .changeLikeCardStatus(card._id, !isLiked)
+      .changeLikeCardStatus(card._id, isLiked)
       .then((newCard) => {
         const newCards = cards.map((c) => (c._id === card._id ? newCard : c));
         setCards(newCards);
@@ -198,10 +200,10 @@ function App() {
       });
   }
 
-  function handleAddPhotoSubmit(cardData) {
+  function handleAddPhotoSubmit(data) {
     setRenderSave(true);
     api
-      .postNewCard(cardData)
+      .postNewCard(data)
       .then((newCard) => {
         setCards([newCard, ...cards]);
         closeAllPopups();
